@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 
 import OneWeek from '@/components/oneweek'
 
@@ -50,6 +51,7 @@ function Index() {
   return (
     <div className="pages-dashboard">
       <h2>情绪曲线</h2>
+      <Button type="primary">Button</Button>
       <OneWeek data={data} />
     </div>
   );
