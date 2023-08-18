@@ -1,57 +1,49 @@
-import { Button } from 'antd';
+import { useEffect, useState } from 'react';
 
+import { Button } from 'antd';
 import OneWeek from '@/components/oneweek'
 
-const data = [
-  {
-    id: 1,
-    name: '23-08-13（周日）',
-    emotion: 7,
-    remark: '哈哈哈',
-  },
-  {
-    id: 2,
-    name: '23-08-14（周一）',
-    emotion: 4,
-    remark: '1234',
-  },
-  {
-    id: 3,
-    name: '23-08-15（周二）',
-    emotion: 3,
-    remark: '今天很开心，认识了一个人',
-  },
-  {
-    id: 4,
-    name: '23-08-16（周三）',
-    emotion: 3,
-    remark: '没有比这更悲伤的了',
-  },
-  {
-    id: 5,
-    name: '23-08-17（周四）',
-    emotion: 5,
-    remark: '世上的人千千万万，怎么会相同呢',
-  },
-  {
-    id: 6,
-    name: '23-08-18（周五）',
-    emotion: 6,
-    remark: '今天加班到10点之后了',
-  },
-  {
-    id: 7,
-    name: '23-08-19（周六）',
-    emotion: 7,
-    remark: '今天抢了3块钱红包',
-  },
-];
+import { getAll, postOne, putOne } from '@/service/modules/mood'
 
 function Index() {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getAll().then(res => {
+      setData(res)
+    })
+  }, [])
+
+//   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+// const result = arr.reduce((acc, cur, idx) => {
+//   if (idx % 7 === 0) acc.push([cur]);
+//   else acc[acc.length - 1].push(cur);
+//   return acc;
+// }, []).map(subArr => {
+//   // 在这里处理每个子数组
+//   return subArr.reduce((a, b) => a + b);
+// });
+// console.log(result); // [28, 15]
+
+  // const one = {
+  //   "id": 89,
+  //   "name": "23-08-20（周日）",
+  //   "emotion": 6,
+  //   "remark": "今天要宣讲了"
+  // }
+
+      // postOne(one).then(res => {
+    //   console.log(`---why222: `, res);
+    // })
+
+    // putOne(89, {...one, remark: '人活一世，到底图个啥哟，你觉得刻意练习游泳吗'}).then(res => {
+    //   console.log(`---why333: `, res);
+    // })
+
   return (
     <div className="pages-dashboard">
       <h2>情绪曲线</h2>
-      <Button type="primary">Button</Button>
+      {/* <Button type="primary">Button</Button> */}
       <OneWeek data={data} />
     </div>
   );
