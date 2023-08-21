@@ -23,11 +23,12 @@ const CustomizedDot = (props) => {
 
 // https://codesandbox.io/s/line-chart-with-customized-dot-7on4t
 const Index = memo(props => {
-  const { data = [] } = props;
+  const { data = [], title = '' } = props;
   if (!data.length) return null;
 
   return (
     <div className='comp-one-week'>
+      <div className="title">情绪曲线</div>
       <LineChart
         width={500}
         height={300}
@@ -40,7 +41,7 @@ const Index = memo(props => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
         <Legend />
@@ -49,7 +50,7 @@ const Index = memo(props => {
       {
         data.map(item => (
           <div className='remark-item' key={item.id}>
-            <div className='remark-item-date'>{item.name}：</div>
+            <div className='remark-item-date'>{item.date}：</div>
             <div className='remark-item-content'>{item.remark}</div>
           </div>
         ))

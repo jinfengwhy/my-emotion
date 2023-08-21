@@ -1,6 +1,7 @@
 
 .comp-one-week {
-  border: 1px solid red;
+  border: 1px solid #FFA500;
+  padding: 10px;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -8,8 +9,30 @@
   align-items: flex-start;
   margin-bottom: 30px;
 
+  .title {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
   .remark-item {
     display: flex;
+    flex-direction: column;
     padding-left: 70px;
+    max-width: 500px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  .remark-item-date {
+    font-weight: lighter;
+  }
+
+  .remark-item-content {
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #E0E0E0;
   }
 }
