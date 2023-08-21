@@ -24,8 +24,8 @@ function Index() {
   }, []).map(group => group.sort((a, b) => a.id - b.id))
 
   // 提交
-  const onSubmit = (value) => {
-    console.log(`---why111: `, value);
+  const onSubmit = (value, remark) => {
+    console.log(`---why111: `, value, remark);
   }
 
   // const one = {

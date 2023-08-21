@@ -1,9 +1,11 @@
 import React, { memo, useState } from 'react';
 
-import { Button, InputNumber } from 'antd';
+import { Button, InputNumber, Input } from 'antd';
 import './index.less'
 
 import { getCurDate } from '@/utils'
+
+const { TextArea } = Input;
 
 const Index = memo(props => {
 
@@ -11,10 +13,15 @@ const Index = memo(props => {
 
   const [curDate] = useState(getCurDate())
   const [value, setValue] = useState(5)
+  const [text, setText] = useState('')
   
-  const onChange = (value) => {
+  const onNumberChange = (value) => {
     setValue(value)
   };
+
+  const onTextChange = (e) => {
+    setText(e.target.value)
+  }
 
   return (
     <div className='submit-form'>
@@ -25,10 +32,20 @@ const Index = memo(props => {
         </div>
         <div>
           <span>情绪值：</span>
-          <InputNumber min={1} max={10} defaultValue={value} onChange={onChange} />
+          <InputNumber min={1} max={10} defaultValue={value} onChange={onNumberChange} />
         </div>
       </div>
-      <Button type="primary" className='submit' onClick={() => onSubmit(value)}>提交</Button>
+      <div className='remark-wrapper'>
+        <span className='bak'>备注：</span>
+        <TextArea
+          className='remark'
+          showCount
+          defaultValue={text}
+          onChange={onTextChange}
+          placeholder="今天有想记录的事情吗？"
+        />
+      </div>
+      <Button type="primary" className='submit' onClick={() => onSubmit(value, text)}>提交</Button>
     </div>
   )
 })
