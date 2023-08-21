@@ -5,8 +5,10 @@ import SubmitForm from '@/components/submitform';
 import './index.less'
 
 import { getAll, postOne, putOne } from '@/service/modules/mood'
+import { getCurDate } from '@/utils'
 
 function Index() {
+  const [curDate] = useState(getCurDate())
   const [data, setData] = useState([])
 
   // 获取所有数据（倒序是为了始终让最新的在最前面）
@@ -25,23 +27,21 @@ function Index() {
 
   // 提交
   const onSubmit = (value, remark) => {
-    console.log(`---why111: `, value, remark);
+    const isFind = data.find(item => item.date === curDate)
+    if (isFind) { // 更新
+      putOne(isFind.id, {...isFind, emotion: value, remark})
+        .then(res => {
+          console.log(`---why222: 更新成功： `, res);
+        })
+    }
+    else { // 新增
+      const maxIdItem = data.reduce((prev, current) => (prev.id > current.id) ? prev : current, {id: 0})
+      postOne({id: maxIdItem.id + 1, date: curDate, emotion: value, remark})
+        .then(res => {
+          console.log(`---why333: 新增成功： `, res);
+        })
+    }
   }
-
-  // const one = {
-  //   "id": 89,
-  //   "date": "23-08-20（周日）",
-  //   "emotion": 6,
-  //   "remark": "今天要宣讲了"
-  // }
-
-  // postOne(one).then(res => {
-  //   console.log(`---why222: `, res);
-  // })
-
-  // putOne(89, {...one, remark: '人活一世，到底图个啥哟，你觉得刻意练习游泳吗'}).then(res => {
-  //   console.log(`---why333: `, res);
-  // })
 
   return (
     <div className="pages-dashboard">

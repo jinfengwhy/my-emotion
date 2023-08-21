@@ -48,7 +48,7 @@ const Index = memo(props => {
         <Line type="monotone" dataKey="emotion" stroke="#8884d8" dot={<CustomizedDot />} />
       </LineChart>
       {
-        data.map(item => (
+        [...data].reverse().map(item => (
           <div className='remark-item' key={item.id}>
             <div className='remark-item-date'>{item.date}：</div>
             <div className='remark-item-content'>{item.remark}</div>
