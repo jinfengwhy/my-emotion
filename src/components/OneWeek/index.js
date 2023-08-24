@@ -30,7 +30,7 @@ const Index = memo(props => {
     <div className='comp-one-week'>
       <div className="title">情绪曲线</div>
       <LineChart
-        width={500}
+        width={70 * data.length}
         height={300}
         data={data}
         margin={{
@@ -47,14 +47,16 @@ const Index = memo(props => {
         <Legend />
         <Line type="monotone" dataKey="emotion" stroke="#8884d8" dot={<CustomizedDot />} />
       </LineChart>
-      {
-        [...data].reverse().map(item => (
-          <div className='remark-item' key={item.id}>
-            <div className='remark-item-date'>{item.date}：</div>
-            <div className='remark-item-content'>{item.remark}</div>
-          </div>
-        ))
-      }
+      <div className='remarks'>
+        {
+          data.map(item => (
+            <div className='remark-item' key={item.id}>
+              <div className='remark-item-date'>{item.date}: </div>
+              <div className='remark-item-content'>{item.remark}</div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 })

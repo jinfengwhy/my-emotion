@@ -17,22 +17,31 @@
     margin-bottom: 5px;
   }
 
-  .remark-item {
+  .remarks {
     display: flex;
-    flex-direction: column;
-    padding-left: 70px;
-    max-width: 500px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
+
+    .remark-item {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+
+      background-color: #E0E0E0;
+      padding: 10px;
+
+      margin-right: 10px;
+      margin-bottom: 10px;
+  
+      .remark-item-date {
+        font-weight: lighter;
+        width: 160px;
+        flex-shrink: 0;
+      }
+    
+      .remark-item-content {
+      }
+    }
   }
 
-  .remark-item-date {
-    font-weight: lighter;
-  }
 
-  .remark-item-content {
-    margin-top: 5px;
-    padding: 5px;
-    border: 1px solid #E0E0E0;
-  }
 }

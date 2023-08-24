@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { message } from 'antd';
 import OneWeek from '@/components/oneweek'
 import SubmitForm from '@/components/submitform';
 import './index.less'
@@ -31,14 +32,20 @@ function Index() {
     if (isFind) { // 更新
       putOne(isFind.id, {...isFind, emotion: value, remark})
         .then(res => {
-          console.log(`---why222: 更新成功： `, res);
+          message.success('更新成功~')
+        })
+        .catch(err => {
+          message.success('更新失败~')
         })
     }
     else { // 新增
       const maxIdItem = data.reduce((prev, current) => (prev.id > current.id) ? prev : current, {id: 0})
       postOne({id: maxIdItem.id + 1, date: curDate, emotion: value, remark})
         .then(res => {
-          console.log(`---why333: 新增成功： `, res);
+          message.success('新增成功~')
+        })
+        .catch(err => {
+          message.success('新增失败~')
         })
     }
   }
