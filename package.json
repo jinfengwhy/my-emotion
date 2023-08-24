@@ -20,8 +20,8 @@
   },
   "scripts": {
     "serve": "json-server --watch public/db.json --port 8888",
-    "start": "craco start",
-    "build": "craco build",
+    "start": "NODE_ENV=development PORT=8888 craco start",
+    "build": "NODE_ENV=production PORT=8888 craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
