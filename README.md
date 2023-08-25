@@ -8,5 +8,7 @@ nohup json-server --watch db.json --port 8888 &
 3. 关闭json-server
 a. 使用 ps aux | grep json-server 查找 JSON Server 的进程 ID（PID）。
 b. 使用 kill PID 来终止 JSON Server 进程，其中 PID 是您在前一步中找到的进程 ID。
-4. 重启nginx
+4. 重启nginx（配置文件：/etc/nginx/nginx.conf）
 systemctl restart/start/status/stop nginx
+5. 重启jenkins (配置文件：/etc/sysconfig/jenkins)
+systemctl restart/start/status/enable nginx
