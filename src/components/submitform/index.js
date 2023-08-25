@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import { Button, InputNumber, Input } from 'antd';
 import './index.less'
@@ -9,11 +9,17 @@ const { TextArea } = Input;
 
 const Index = memo(props => {
 
-  const { onSubmit = () => {} } = props
+  const { onSubmit = () => {}, form = {} } = props
 
   const [curDate] = useState(getCurDate())
   const [value, setValue] = useState(5)
   const [text, setText] = useState('')
+
+  useEffect(() => {
+    if (form.value) setValue(form.value)
+    if (form.text) setText(form.text)
+  }, [form])
+  
   
   const onNumberChange = (value) => {
     setValue(value)
@@ -32,14 +38,14 @@ const Index = memo(props => {
         </div>
         <div className='input-value'>
           <span>情绪值：</span>
-          <InputNumber min={1} max={10} defaultValue={value} onChange={onNumberChange} />
+          <InputNumber min={1} max={10} value={value} onChange={onNumberChange} />
         </div>
       </div>
       <div className='remark-wrapper'>
         <span className='bak'>备注：</span>
         <TextArea
           className='remark'
-          defaultValue={text}
+          value={text}
           onChange={onTextChange}
           placeholder="今天有想记录的事情吗？"
         />

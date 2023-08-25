@@ -11,6 +11,7 @@ import { getCurDate } from '@/utils'
 function Index() {
   const [curDate] = useState(getCurDate())
   const [data, setData] = useState([])
+  const [form, setForm] = useState({})
 
   // 获取所有数据（倒序是为了始终让最新的在最前面）
   useEffect(() => {
@@ -18,6 +19,14 @@ function Index() {
       setData(res.reverse())
     })
   }, [])
+
+  // 获取最新的一条数据
+  useEffect(() => {
+    const isFind = data.find(item => item.date === curDate)
+    if (isFind) {
+      setForm({value: isFind.emotion, text: isFind.remark})
+    }
+  }, [data, curDate])
 
   // 每7个一组
   const groupData = data.reduce((acc, cur, idx) => {
@@ -58,7 +67,7 @@ function Index() {
 
   return (
     <div className="pages-dashboard">
-      <SubmitForm onSubmit={onSubmit} />
+      <SubmitForm form={form} onSubmit={onSubmit} />
       {
         groupData.map((group, idx) => (
           <OneWeek key={idx} data={group} />
