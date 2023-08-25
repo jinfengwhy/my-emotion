@@ -33,6 +33,9 @@ function Index() {
       putOne(isFind.id, {...isFind, emotion: value, remark})
         .then(res => {
           message.success('更新成功~')
+          setTimeout(() => {
+            window.location.reload()
+          }, 500)
         })
         .catch(err => {
           message.success('更新失败~')
@@ -43,6 +46,9 @@ function Index() {
       postOne({id: maxIdItem.id + 1, date: curDate, emotion: value, remark})
         .then(res => {
           message.success('新增成功~')
+          setTimeout(() => {
+            window.location.reload()
+          }, 500)
         })
         .catch(err => {
           message.success('新增失败~')

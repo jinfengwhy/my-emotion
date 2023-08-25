@@ -30,7 +30,7 @@ const Index = memo(props => {
           <span>日期：</span>
           <span>{curDate}</span>
         </div>
-        <div>
+        <div className='input-value'>
           <span>情绪值：</span>
           <InputNumber min={1} max={10} defaultValue={value} onChange={onNumberChange} />
         </div>
@@ -39,7 +39,6 @@ const Index = memo(props => {
         <span className='bak'>备注：</span>
         <TextArea
           className='remark'
-          showCount
           defaultValue={text}
           onChange={onTextChange}
           placeholder="今天有想记录的事情吗？"
